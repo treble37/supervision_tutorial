@@ -10,11 +10,12 @@ defmodule SupervisionTutorial.Application do
     children = [
       # Starts a worker by calling: SupervisionTutorial.Worker.start_link(arg)
       # {SupervisionTutorial.Worker, arg},
+      SupervisionTutorial.OneForOne
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
-    opts = [strategy: :one_for_one, name: SupervisionTutorial.Supervisor]
+    opts = [strategy: :one_for_one, restart: :transient, name: SupervisionTutorial.Supervisor]
     Supervisor.start_link(children, opts)
   end
 end
