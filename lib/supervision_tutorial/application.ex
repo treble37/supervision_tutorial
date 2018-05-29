@@ -10,7 +10,8 @@ defmodule SupervisionTutorial.Application do
     children = [
       # Starts a worker by calling: SupervisionTutorial.Worker.start_link(arg)
       # {SupervisionTutorial.Worker, arg},
-      SupervisionTutorial.OneForOne
+      SupervisionTutorial.OneForOne,
+      SupervisionTutorial.OneForAll
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

@@ -1,13 +1,13 @@
-defmodule SupervisionTutorial.OneForOne do
+defmodule SupervisionTutorial.OneForAll do
   use Supervisor
 
   def start_link(_options) do
-    Supervisor.start_link(__MODULE__, :one_f_one, name: __MODULE__)
+    Supervisor.start_link(__MODULE__, :one_f_all, name: __MODULE__)
   end
 
-  def init(:one_f_one) do
-    children = [{FibWorker, name: :one_for_one_worker, state: 0}]
-    Supervisor.init(children, strategy: :one_for_one, max_restarts: 1)
+  def init(:one_f_all) do
+    children = [{FibWorker, name: :one_for_all_worker, state: 0}]
+    Supervisor.init(children, strategy: :one_for_all, max_restarts: 1)
   end
 
   def stop_workers do
@@ -25,7 +25,6 @@ defmodule SupervisionTutorial.OneForOne do
   end
 
   defp worker_compute([head | _tail], n) do
-    #registered_name = Process.info(head) |> Keyword.fetch!(:registered_name)
     GenServer.call(head, {:compute, n})
   end
 

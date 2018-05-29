@@ -5,6 +5,15 @@ defmodule EtsCache do
     read(table_name, key)
   end
 
+  def upsert(table_name, key, value) do
+    case read(table_name, key) do
+      nil ->
+        write(table_name, key, value)
+      value ->
+        value
+    end
+  end
+
   def read(table_name, key) do
     find_or_create_table(no_table?(table_name), table_name)
     case :ets.lookup(table_name, key) do
