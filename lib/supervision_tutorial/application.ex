@@ -12,6 +12,7 @@ defmodule SupervisionTutorial.Application do
       # {SupervisionTutorial.Worker, arg},
       SupervisionTutorial.OneForOne,
       SupervisionTutorial.OneForAll,
+      SupervisionTutorial.RestForOne,
       {DynamicSupervisor, strategy: :one_for_one, name: SupervisionTutorial.Dynamic}
     ]
 
